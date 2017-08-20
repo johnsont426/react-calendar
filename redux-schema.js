@@ -1,0 +1,7 @@
+{
+  calendar: {
+    month,
+    days,
+    startDay,
+  }
+}
