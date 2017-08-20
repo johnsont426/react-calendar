@@ -6,7 +6,7 @@ class HomeContainer extends React.Component {
     return (
       <div className={container}>
         <p className={title}>{'React Calendar'}</p>
-        <p className={slogan}>{'Beautiful calendar}</p>
+        <p className={slogan}>{'Beautiful calendar'}</p>
       </div>
     )
   }

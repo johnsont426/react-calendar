@@ -1,25 +1,33 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Calendar } from 'components'
+import { formattedMonth } from 'helpers/utils'
+
 
 class CalendarContainer extends React.Component {
   render () {
     return (
-      <div>
-        <table>
-          <tr>
-            <th>Sun</th>
-            <th>Mon</th>
-            <th>Tue</th>
-            <th>Wed</th>
-            <th>Thu</th>
-            <th>Fri</th>
-            <th>Sat</th>
-          </tr>
-          <tr>
-          </tr>
-        </table>
-      </div>
+      <Calendar
+        month={formattedMonth(this.props.monthNum)}
+        dayOfTheFirst={this.props.dayOfTheFirst}
+        daysInMonth={this.props.daysInMonth} />
     )
   }
 }
 
-export default CalendarContainer
+CalendarContainer.propTypes = {
+  monthNum: PropTypes.number.isRequired,
+  dayOfTheFirst: PropTypes.number.isRequired,
+  daysInMonth: PropTypes.number.isRequired,
+}
+
+function mapStateToProps (state) {
+  return {
+    monthNum: state.monthNum,
+    dayOfTheFirst: state.dayOfTheFirst,
+    daysInMonth: state.daysInMonth,
+  }
+}
+
+export default connect(mapStateToProps)(CalendarContainer)
