@@ -1,11 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { MainContainer } from 'containers'
-import { combineReducers, createStore } from 'redux'
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
-import months from 'redux/modules/months'
+import * as reducers from 'redux/modules'
+import thunk from 'redux-thunk'
 
-const store = createStore(months)
+const store = createStore(combineReducers(reducers), compose(
+  applyMiddleware(thunk),
+  window.devToolsExtension ? window.devToolsExtension() : (f) => f
+))
 
 ReactDOM.render(
   <Provider store={store}>

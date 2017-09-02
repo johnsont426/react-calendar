@@ -3,15 +3,26 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Calendar } from 'components'
 import { formattedMonth } from 'helpers/utils'
+import { bindActionCreators } from 'redux'
+import * as calendarActionCreators from 'redux/modules/calendar'
 
 
 class CalendarContainer extends React.Component {
+  handleClickLastMonth () {
+    this.props.lastMonth()
+  }
+  handleClickNextMonth () {
+    this.props.nextMonth()
+  }
   render () {
     return (
       <Calendar
         month={formattedMonth(this.props.monthNum)}
         dayOfTheFirst={this.props.dayOfTheFirst}
-        daysInMonth={this.props.daysInMonth} />
+        daysInMonth={this.props.daysInMonth}
+        handleClickLastMonth={this.handleClickLastMonth.bind(this)}
+        handleClickNextMonth={this.handleClickNextMonth.bind(this)}
+      />
     )
   }
 }
@@ -22,12 +33,16 @@ CalendarContainer.propTypes = {
   daysInMonth: PropTypes.number.isRequired,
 }
 
-function mapStateToProps (state) {
+function mapStateToProps ({calendar}) {
   return {
-    monthNum: state.monthNum,
-    dayOfTheFirst: state.dayOfTheFirst,
-    daysInMonth: state.daysInMonth,
+    monthNum: calendar.get('monthNum'),
+    dayOfTheFirst: calendar.get('dayOfTheFirst'),
+    daysInMonth: calendar.get('daysInMonth'),
   }
 }
 
-export default connect(mapStateToProps)(CalendarContainer)
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators(calendarActionCreators, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarContainer)

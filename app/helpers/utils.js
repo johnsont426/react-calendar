@@ -1,9 +1,14 @@
-const today = new Date
-export const theFirstOfThisMonth = new Date(today.setDate(1))
+export const today = new Date
 export const todayMonthNum = today.getMonth()
 export const todayYearNum = today.getFullYear()
-export const daysInThisMonth = new Date(todayYearNum, todayMonthNum, 0).getDate()
 
+export function theFirstOfThisMonth (date) {
+  return new Date(date.setDate(1))
+}
+
+export function daysInThisMonth (yearNum, monthNum) {
+  return new Date(yearNum, monthNum + 1, 0).getDate()
+}
 
 export function formattedMonth (num) {
   let monthArray = ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -12,4 +17,15 @@ export function formattedMonth (num) {
 
 export function getCorrectDate (num, daysInMonth) {
   return num > 0 && num <= daysInMonth ? num : null
+}
+
+export function dateToNum (year, monthNum, date) {
+  const d = new Date(year, monthNum, date)
+  return d.getTime()
+}
+
+export function timeNumToFormattedDate (timeNum) {
+  const d = new Date(timeNum)
+  const option = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }
+  return d.toLocaleDateString('en-US', option)
 }

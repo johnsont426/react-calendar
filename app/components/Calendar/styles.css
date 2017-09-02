@@ -1,0 +1,44 @@
+.calendarContainer {
+	width: 50%;
+}
+
+.monthHeader {
+	padding: 70px 0;
+  width: 100%;
+  background: #1abc9c;
+  text-align: center;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.calendarTable {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.weekdays {
+	height: 60px;
+	width: 100%;
+	text-align: center;
+	background-color:#ddd;
+}
+
+.tableHeaderCells {
+	width: 14.285%;
+}
+
+.tableRow {
+	height: 60px;
+}
+
+.prev {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.next {
+	font-size: 1.5em;
+	cursor: pointer;
+}

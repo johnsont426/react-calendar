@@ -1,0 +1,32 @@
+.container {
+  width: 100%;
+  color: #4a90e2;
+  font-size: 18px;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0px auto;
+}
+
+.navContainer ul {
+  display: flex;
+  padding: 0;
+}
+
+.navContainer li {
+  list-style-type: none;
+  padding: 0 10px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #1877E6;
+}
