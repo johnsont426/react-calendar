@@ -1,5 +1,5 @@
 const UPDATE_FORMATTED_DATE = 'UPDATE_FORMATTED_DATE'
-import { Map } from 'immutable'
+import { fromJS } from 'immutable'
 
 export function updateFormattedDate (formattedDate) {
   return {
@@ -8,11 +8,12 @@ export function updateFormattedDate (formattedDate) {
   }
 }
 
-const initialState = Map({
-  formattedDate: ''
+const initialState = fromJS({
+  formattedDate: '',
+  events: ["", "", "", "", "", "", "", "", "", "", "", ""]
 })
 
-export default function todos (state = initialState, action) {
+export default function schedule (state = initialState, action) {
   switch (action.type) {
     case UPDATE_FORMATTED_DATE :
       return state.merge({

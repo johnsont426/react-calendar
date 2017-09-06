@@ -1,4 +1,4 @@
 export calendar from './calendar'
 export users from './users'
 export days from './days'
-export todos from './todos'
+export schedule from './schedule'

@@ -1,3 +1,8 @@
+.flexContainer {
+	display: flex;
+	justify-content: space-between;
+}
+
 .calendarContainer {
 	width: 50%;
 }
@@ -5,7 +10,7 @@
 .monthHeader {
 	padding: 70px 0;
   width: 100%;
-  background: #1abc9c;
+  background: #429EA6;
   text-align: center;
   color: white;
   display: flex;

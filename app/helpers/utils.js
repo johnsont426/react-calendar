@@ -16,7 +16,7 @@ export function formattedMonth (num) {
 }
 
 export function getCorrectDate (num, daysInMonth) {
-  return num > 0 && num <= daysInMonth ? num : null
+  return num > 0 && num <= daysInMonth ? num : 0
 }
 
 export function dateToNum (year, monthNum, date) {
@@ -28,4 +28,12 @@ export function timeNumToFormattedDate (timeNum) {
   const d = new Date(timeNum)
   const option = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }
   return d.toLocaleDateString('en-US', option)
+}
+
+export function formatUserInfo (name, avatar, uid) {
+  return {
+    name,
+    avatar,
+    uid,
+  }
 }

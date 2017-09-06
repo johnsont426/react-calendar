@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Day } from 'components'
 import { connect } from 'react-redux'
 import * as daysActionCreators from 'redux/modules/days'
-import * as todosActionCreators from 'redux/modules/todos'
+import * as scheduleActionCreators from 'redux/modules/schedule'
 import { bindActionCreators } from 'redux'
 import { dateToNum, timeNumToFormattedDate } from 'helpers/utils'
 
@@ -39,7 +39,7 @@ function mapStateToProps ({calendar}) {
 function mapDispatchToProps (dispatch) {
 	return bindActionCreators({
 		...daysActionCreators,
-		...todosActionCreators
+		...scheduleActionCreators
 	}, dispatch)
 }
 

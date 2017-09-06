@@ -4,7 +4,7 @@ import { dateCell } from './styles.css'
 
 export default function Day (props) {
   return (
-    <td onClick={props.handleClick} className={dateCell}>{props.date}</td>
+    <td onClick={props.handleClick} className={dateCell}>{props.date ? props.date : null}</td>
   )
 }
 

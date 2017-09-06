@@ -3,5 +3,41 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
-  font-family: Verdana, sans-serif;
+  font-family: sans-serif;
+}
+
+a:hover, a:active, a:visited {
+	color: inherit;
+}
+
+.centeredContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.largeHeader {
+  color: #16F4D0;
+  font-weight: 100;
+  font-size: 75px;
+  margin-bottom: 20px;
+}
+
+.errorMsg {
+  color: #FF7777;
+  font-size: 22px;
+  text-align: center;
+}
+
+.subHeader {
+  color: #16F4D0;
+  font-size: 35px;
+  text-align: center;
+  line-height: 55px;
+  font-weight: 100;
+}
+
+.center {
+  text-align: center;
 }

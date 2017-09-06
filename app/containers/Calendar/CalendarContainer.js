@@ -8,6 +8,16 @@ import * as calendarActionCreators from 'redux/modules/calendar'
 
 
 class CalendarContainer extends React.Component {
+  redirect () {
+    if (this.props.isFetching === false) {
+      this.props.checkAuth.apply(this)
+    } else {
+      setTimeout(this.redirect.bind(this), 1000)
+    }
+  }
+  componentDidMount () {
+    this.redirect.apply(this)
+  }
   handleClickLastMonth () {
     this.props.lastMonth()
   }
@@ -33,8 +43,9 @@ CalendarContainer.propTypes = {
   daysInMonth: PropTypes.number.isRequired,
 }
 
-function mapStateToProps ({calendar}) {
+function mapStateToProps ({calendar, users}) {
   return {
+    isFetching: users.get('isFetching'),
     monthNum: calendar.get('monthNum'),
     dayOfTheFirst: calendar.get('dayOfTheFirst'),
     daysInMonth: calendar.get('daysInMonth'),
