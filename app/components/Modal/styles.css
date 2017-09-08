@@ -1,0 +1,39 @@
+.newEventTop {
+  background: #fff;
+  padding: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #55D6BE;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.newEventInputContainer {
+  composes: baseTextAreaContainer from 'sharedStyles/styles.css';
+}
+
+.newEventInput {
+  composes: baseTextArea from 'sharedStyles/styles.css';
+  border-width: 0;
+}
+
+.darkBtn {
+  composes: darkBtn from 'sharedStyles/styles.css';
+  text-decoration: none;
+}
+
+.submitEventBtn {
+  composes: darkBtn;
+  margin: 0px auto;
+  width: 150px;
+  text-align: center;
+  display: block;
+}
+
+.submitEventBtn:disabled {
+  background: #C6C6C6;
+  border: 1px solid #C6C6C6;
+}

@@ -3,11 +3,16 @@ import PropTypes from 'prop-types'
 import { Schedule } from 'components'
 import { connect } from 'react-redux'
 import { timeNumToFormattedDate } from 'helpers/utils'
+import { bindActionCreators } from 'redux'
+import * as modalActionCreators from 'redux/modules/modal'
 
 class ScheduleContainer extends Component {
   render () {
     return (
-      <Schedule formattedDate={this.props.formattedDate} events={this.props.events}/>
+      <Schedule 
+      	formattedDate={this.props.formattedDate}
+      	events={this.props.events}
+      	openModal={this.props.openModal} />
     )
   }
 }
@@ -16,11 +21,15 @@ ScheduleContainer.propTypes = {
 	formattedDate: PropTypes.string.isRequired,
 }
 
-function mapStateToProps ({schedule}) {
+function mapStateToProps ({schedule, events}) {
   return {
     formattedDate: schedule.get('formattedDate'),
-    events: schedule.get('events'),
+    events: events.get('events'),
   }
 }
 
-export default connect(mapStateToProps)(ScheduleContainer)
+function mapDispatchToProps (dispatch) {
+	return bindActionCreators(modalActionCreators, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScheduleContainer)

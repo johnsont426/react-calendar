@@ -1,0 +1,22 @@
+.scheduleBlock {
+	border-top: 1px solid #65B891;
+	height: 50px;
+}
+
+.occupiedScheduleBlock {
+	border-top: 1px solid #65B891;
+	height: 50px;
+	background-color: #baecff;
+	border-left: 1px solid #86cff9;
+	border-right: 1px solid #86cff9;
+}
+
+.eventTextP {
+	display: block;
+	margin: 0 auto;
+	width: 90%;
+	color: #41728e;
+	font-size: 0.9em;
+	position: relative;
+	top: 5px;
+}

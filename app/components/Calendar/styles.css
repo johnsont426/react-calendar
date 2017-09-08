@@ -1,16 +1,18 @@
 .flexContainer {
 	display: flex;
 	justify-content: space-between;
+	height: 650px;
 }
 
 .calendarContainer {
-	width: 50%;
+	width: 45%;
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
 }
 
 .monthHeader {
 	padding: 70px 0;
   width: 100%;
-  background: #429EA6;
+  background: #55D6BE;
   text-align: center;
   color: white;
   display: flex;
@@ -27,7 +29,7 @@
 	height: 60px;
 	width: 100%;
 	text-align: center;
-	background-color:#ddd;
+	background-color:#D9DCD6;
 }
 
 .tableHeaderCells {

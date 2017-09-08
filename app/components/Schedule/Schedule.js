@@ -1,18 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { scheduleContainer } from './styles.css'
+import { ModalContainer, ScheduleBlockContainer } from 'containers'
+import { scheduleContainer, scheduleList, timeLable, scheduleDiv, date } from './styles.css'
 
-function ScheduleBlock ({event}) {
-  return <li>{event}</li>
-}
-
-export default function Schedule (props) {
+export default function Schedule ({formattedDate, openModal, events}) {
   return (
     <div className={scheduleContainer}>
-      <h1>{props.formattedDate}</h1>
-      <ul>
-        {props.events.map((event) => <ScheduleBlock event={event} />)}
+      <ul className={timeLable}>
+        <li>12 AM</li>
+        <li>2 AM</li>
+        <li>4 AM</li>
+        <li>6 AM</li>
+        <li>8 AM</li>
+        <li>10 AM</li>
+        <li>12 PM</li>
+        <li>2 PM</li>
+        <li>4 PM</li>
+        <li>6 PM</li>
+        <li>8 PM</li>
+        <li>10 PM</li>
+        <li></li>
       </ul>
+      <ModalContainer />
+      <div className={scheduleDiv}>
+        <p className={date}>{formattedDate}</p>
+        <ul className={scheduleList}>
+          {["", "", "", "", "", "", "", "", "", "", "", ""].map((ele, index) => <ScheduleBlockContainer key={index} scheduleBlockIndex={index} openModal={openModal} />)}
+        </ul>
+      </div>
     </div>
   )
 }

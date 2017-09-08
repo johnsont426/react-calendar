@@ -26,8 +26,8 @@ export function dateToNum (year, monthNum, date) {
 
 export function timeNumToFormattedDate (timeNum) {
   const d = new Date(timeNum)
-  const option = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }
-  return d.toLocaleDateString('en-US', option)
+  const option = { weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric' }
+  return d.toLocaleDateString('en-US', option).split(',').join('')
 }
 
 export function formatUserInfo (name, avatar, uid) {

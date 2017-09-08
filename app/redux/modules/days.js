@@ -2,22 +2,22 @@ import { Map } from 'immutable'
 
 const UPDATE_DATE = 'UPDATE_DATE'
 
-export function updateDate (timeNum) {
+export function updateDate (dateTimeNum) {
   return {
     type: UPDATE_DATE,
-    timeNum,
+    dateTimeNum,
   }
 }
 
 const initialState = Map({
-  timeNumOfTheDay: 0,
+  dateTimeNum: null,
 })
 
 export default function days (state = initialState, action) {
   switch (action.type) {
     case UPDATE_DATE :
       return state.merge({
-        timeNumOfTheDay: action.timeNum
+        dateTimeNum: action.dateTimeNum
       })
     default :
       return state

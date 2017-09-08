@@ -1,8 +1,19 @@
 {
   calendar: {
-    month,
-    days,
-    startDay,
+    yearNum,
+    monthNum,
+    dayOfTheFirst,
+    daysInMonth,
+  }
+  day: {
+    timeNumOfTheDate
+  }
+  events: {
+    isFetching,
+    [startTime]: {
+      eventText,
+      timeSpan,
+    }
   }
   user: {
     lastUpdated,

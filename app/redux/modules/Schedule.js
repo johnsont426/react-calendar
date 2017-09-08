@@ -1,5 +1,6 @@
-const UPDATE_FORMATTED_DATE = 'UPDATE_FORMATTED_DATE'
 import { fromJS } from 'immutable'
+
+const UPDATE_FORMATTED_DATE = 'UPDATE_FORMATTED_DATE'
 
 export function updateFormattedDate (formattedDate) {
   return {
@@ -10,7 +11,6 @@ export function updateFormattedDate (formattedDate) {
 
 const initialState = fromJS({
   formattedDate: '',
-  events: ["", "", "", "", "", "", "", "", "", "", "", ""]
 })
 
 export default function schedule (state = initialState, action) {
