@@ -1,5 +1,6 @@
 import { Map, fromJS, List } from 'immutable'
 import { closeModal } from './modal'
+import { saveEvent, saveOccupiedDate, fetchEvents } from 'helpers/api'
 
 const FETCHING_EVENTS = 'FETCHING_EVENTS'
 const ADD_EVENT = 'ADD_EVENT'
@@ -8,6 +9,7 @@ const UPDATE_EVENT_TIME_SPAN = 'UPDATE_EVENT_TIME_SPAN'
 const UPDATE_OCCUPIED = 'UPDATE_OCCUPIED'
 const ADD_EVENT_ERROR = 'ADD_EVENT_ERROR'
 const REMOVE_ADD_EVENT_ERROR = 'REMOVE_ADD_EVENT_ERROR'
+const CLEAR_EVENTS = 'CLEAR_EVENTS'
 
 export function fetchingEvents () {
   return {
@@ -59,16 +61,44 @@ export function updateOccupied (start, span) {
   }
 }
 
-export function addAndHandleEvent (dateTimeNum, eventText) {
+export function clearEvents () {
+  return {
+    type: CLEAR_EVENTS,
+  }
+}
+
+export function addAndHandleEvent (eventText) {
   return function (dispatch, getState) {
     const uid = getState().users.get('authedId')
     const dateTimeNum = getState().days.get('dateTimeNum')
     const startTime = getState().events.get('eventStartTime')
     const timeSpan = getState().events.get('eventTimeSpan')
 
-    dispatch(addEvent(eventText, startTime, timeSpan))
-    dispatch(updateOccupied(startTime, timeSpan))
-    dispatch(closeModal())
+    Promise.all([
+      saveEvent(uid, dateTimeNum, startTime, timeSpan, eventText),
+      saveOccupiedDate(uid, dateTimeNum)
+    ]).then(() => {
+        dispatch(addEvent(eventText, startTime, timeSpan))
+        dispatch(updateOccupied(startTime, timeSpan))
+        dispatch(closeModal())
+      })
+  }
+}
+
+export function fetchAndHandleEvents () {
+  return function (dispatch, getState) {
+    const uid = getState().users.get('authedId')
+    const dateTimeNum = getState().days.get('dateTimeNum')
+
+    fetchEvents(uid, dateTimeNum).then((response) => {
+      if (response) {
+        for (let time in response) {
+          dispatch(addEvent(response[time].eventText, time, response[time].eventTimeSpan))
+          dispatch(updateOccupied(time, response[time].eventTimeSpan))
+        }
+      }
+    })
+
   }
 }
 
@@ -111,6 +141,8 @@ export default function events (state = initialState, action) {
       return state.merge({
         error: ''
       })
+    case CLEAR_EVENTS :
+      return initialState
     default :
       return state
   }

@@ -39,7 +39,7 @@ function mapStateToProps ({calendar}) {
 function mapDispatchToProps (dispatch) {
 	return bindActionCreators({
 		...daysActionCreators,
-		...scheduleActionCreators
+		...scheduleActionCreators,
 	}, dispatch)
 }
 
