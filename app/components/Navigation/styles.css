@@ -1,7 +1,8 @@
 .container {
   width: 100%;
-  color: #55D6BE;
+  color: white;
   font-size: 18px;
+  background-color: #55D6BE;
 }
 
 .navContainer {

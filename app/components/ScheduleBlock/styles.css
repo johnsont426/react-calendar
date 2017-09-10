@@ -12,11 +12,34 @@
 }
 
 .eventTextP {
-	display: block;
-	margin: 0 auto;
-	width: 90%;
 	color: #41728e;
 	font-size: 0.9em;
-	position: relative;
-	top: 5px;
+	margin: 0;
 }
+
+.eventContent {
+	display: flex;
+	padding: 3px;
+	position: relative;
+	top: 10px;
+	left: 15px;
+	max-width: 80%;
+}
+
+.removeEventBtn {
+	background-color: #41728e;
+	color: white;
+	margin-left: 7px;
+	border-radius: 50%;
+	width: 1em;
+	height: 1em;
+	text-align: center;
+	vertical-align: center;	
+}
+
+.removeEventBtn p {
+	margin: 0;
+	vertical-align: center;
+	font-size: 0.7em;
+}
+

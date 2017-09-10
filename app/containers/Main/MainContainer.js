@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { firebaseAuth } from 'config/constants'
 import { formatUserInfo } from 'helpers/utils'
 import * as usersActionCreators from 'redux/modules/users'
+import * as calendarActionCreators from 'redux/modules/calendar'
 import { bindActionCreators } from 'redux'
 import { container, innerContainer } from './styles.css'
 
@@ -21,6 +22,7 @@ class MainContainer extends React.Component {
         const userInfo = formatUserInfo(userData.displayName, userData.photoURL, user.uid)
         this.props.authUser(user.uid)
         this.props.fetchingUserSuccess(user.uid, userInfo, Date.now())
+        this.props.fetchAndHandleOccupiedDate()
       } else {
         this.props.removeFetchingUser()
       }
@@ -50,7 +52,9 @@ function mapStateToProps ({users}) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators(usersActionCreators, dispatch)
+  return bindActionCreators({
+    ...usersActionCreators,
+    ...calendarActionCreators}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer)

@@ -1,4 +1,5 @@
 .flexContainer {
+	margin: 20px;
 	display: flex;
 	justify-content: space-between;
 	height: 650px;

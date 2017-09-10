@@ -10,6 +10,7 @@ function mapStateToProps ({events}, props) {
     newEventStart: events.get('eventStartTime'),
     occupied: events.get('occupied').toJS(),
     eventText: events.getIn([`${props.scheduleBlockIndex}`, 'eventText']) || '',
+    hovered: events.getIn([`${props.scheduleBlockIndex}`, 'hovered'])
   }
 }
 

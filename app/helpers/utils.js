@@ -37,3 +37,18 @@ export function formatUserInfo (name, avatar, uid) {
     uid,
   }
 }
+
+export function updateOccupiedArray(occupiedArray, eventStartTime, eventTimeSpan, bool) {
+  occupiedArray.splice(eventStartTime, eventTimeSpan)
+  if (bool === true) {
+    for (let i = 0; i < eventTimeSpan; i++) {
+      occupiedArray.splice(eventStartTime, 0, true)
+    }
+  }else {
+    for (let i = 0; i < eventTimeSpan; i++) {
+      occupiedArray.splice(eventStartTime, 0, false)
+    }
+  }
+
+  return occupiedArray
+}

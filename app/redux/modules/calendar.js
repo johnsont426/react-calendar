@@ -1,8 +1,10 @@
-import { Map } from 'immutable'
+import { Map, fromJS, List } from 'immutable'
 import { today, todayYearNum, todayMonthNum, theFirstOfThisMonth, daysInThisMonth } from 'helpers/utils'
+import { fetchOccupiedDate } from 'helpers/api'
 
 const NEXT_MONTH = 'NEXT_MONTH'
 const LAST_MONTH = 'LAST_MONTH'
+const ADD_OCCUPIED_DATES = 'ADD_OCCUPIED_DATES'
 
 export function nextMonth () {
   return {
@@ -16,11 +18,32 @@ export function lastMonth () {
   }
 }
 
-const initialState = Map({
+export function addOccupiedDates(dateTimeNumArray) {
+  return {
+    type: ADD_OCCUPIED_DATES,
+    dateTimeNumArray,
+  }
+}
+
+export function fetchAndHandleOccupiedDate () {
+  return function (dispatch, getState) {
+    const uid = getState().users.get('authedId')
+    fetchOccupiedDate(uid).then((response) => {
+      let a = []
+      for (let dateTimeNum in response) {
+        a.push(dateTimeNum)
+      }
+      dispatch(addOccupiedDates(a))
+    })
+  }
+}
+
+const initialState = fromJS({
 	yearNum: todayYearNum,
   monthNum: todayMonthNum,
   dayOfTheFirst: theFirstOfThisMonth(today).getDay(),
-  daysInMonth: daysInThisMonth(todayYearNum, todayMonthNum)
+  daysInMonth: daysInThisMonth(todayYearNum, todayMonthNum),
+  occupiedDates: []
 })
 
 export default function months (state = initialState, action) {
@@ -43,6 +66,12 @@ export default function months (state = initialState, action) {
         dayOfTheFirst: theFirstOfThisMonth(new Date(theYearNum, lastMonthNum)).getDay(),
         daysInMonth: daysInThisMonth(theYearNum, lastMonthNum)
       })
+    case ADD_OCCUPIED_DATES :
+      const a = state.get('occupiedDates').toJS()
+      action.dateTimeNumArray.map((dateTimeNum) => {
+        a.push(dateTimeNum)
+      })
+      return state.merge({occupiedDates: List(a)})
     default :
       return state
   }

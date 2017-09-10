@@ -1,6 +1,7 @@
 import { fromJS, Map } from 'immutable'
 import auth, { saveUser, logout } from 'helpers/auth'
 import { formatUserInfo } from 'helpers/utils'
+import { fetchAndHandleOccupiedDate } from './calendar'
 
 const AUTH_USER = 'AUTH_USER'
 const UNAUTH_USER = 'UNAUTH_USER'
@@ -61,6 +62,7 @@ export function fetchAndHandleAuthedUser () {
     })
     .then(({user}) => saveUser(user))
     .then((user) => dispatch(authUser(user.uid)))
+    .then(() => dispatch(fetchAndHandleOccupiedDate()))
     .catch((error) => dispatch(fetchingUserFailure(error)))
   }
 }

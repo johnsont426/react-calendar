@@ -1,6 +1,7 @@
 import { Map, fromJS, List } from 'immutable'
 import { closeModal } from './modal'
-import { saveEvent, saveOccupiedDate, fetchEvents } from 'helpers/api'
+import { saveEvent, saveOccupiedDate, fetchEvents, deleteEvent } from 'helpers/api'
+import { updateOccupiedArray } from 'helpers/utils'
 
 const FETCHING_EVENTS = 'FETCHING_EVENTS'
 const ADD_EVENT = 'ADD_EVENT'
@@ -10,6 +11,10 @@ const UPDATE_OCCUPIED = 'UPDATE_OCCUPIED'
 const ADD_EVENT_ERROR = 'ADD_EVENT_ERROR'
 const REMOVE_ADD_EVENT_ERROR = 'REMOVE_ADD_EVENT_ERROR'
 const CLEAR_EVENTS = 'CLEAR_EVENTS'
+const MOUSE_ENTER = 'MOUSE_ENTER'
+const MOUSE_LEAVE = 'MOUSE_LEAVE'
+const REMOVE_EVENT = 'REMOVE_EVENT'
+const REMOVE_OCCUPIED = 'REMOVE_OCCUPIED'
 
 export function fetchingEvents () {
   return {
@@ -67,6 +72,35 @@ export function clearEvents () {
   }
 }
 
+export function mouseEnter (scheduleBlockIndex) {
+  return {
+    type: MOUSE_ENTER,
+    scheduleBlockIndex,
+  }
+}
+
+export function mouseLeave (scheduleBlockIndex) {
+  return {
+    type: MOUSE_LEAVE,
+    scheduleBlockIndex,
+  }
+}
+
+export function removeEvent (eventStartTime) {
+  return {
+    type: REMOVE_EVENT,
+    eventStartTime,
+  }
+}
+
+export function removeOccupied (start, span) {
+  return {
+    type: REMOVE_OCCUPIED,
+    start,
+    span
+  }
+}
+
 export function addAndHandleEvent (eventText) {
   return function (dispatch, getState) {
     const uid = getState().users.get('authedId')
@@ -98,6 +132,19 @@ export function fetchAndHandleEvents () {
         }
       }
     })
+  }
+}
+
+export function deleteAndHandleEvent (eventStartTime) {
+  return function (dispatch, getState) {
+    const uid = getState().users.get('authedId')
+    const dateTimeNum = getState().days.get('dateTimeNum')
+    const eventTimeSpan = getState().events.getIn([`${eventStartTime}`, 'timeSpan'])
+
+    deleteEvent(uid, dateTimeNum, eventStartTime).then(() => {
+      dispatch(removeEvent(eventStartTime))
+      dispatch(removeOccupied(eventStartTime, eventTimeSpan))
+    })
 
   }
 }
@@ -123,15 +170,12 @@ export default function events (state = initialState, action) {
         eventTimeSpan: action.num
       })
     case ADD_EVENT :
-      return state.merge({[action.startTime]: {timeSpan: action.timeSpan, eventText: action.eventText}})
+      return state.merge({[action.startTime]: {timeSpan: action.timeSpan, eventText: action.eventText, hovered: false}})
     case UPDATE_OCCUPIED :
-      const a = state.get('occupied').toJS()
-      a.splice(action.start, action.span)
-      for (let i = 0; i < action.span; i++) {
-        a.splice(action.start, 0, true)
-      }
+      let a = state.get('occupied').toJS()
+      let newArray = updateOccupiedArray(a, action.start, action.span, true)
       return state.merge({
-        occupied: List(a)
+        occupied: List(newArray)
       })
     case ADD_EVENT_ERROR :
       return state.merge({
@@ -143,6 +187,18 @@ export default function events (state = initialState, action) {
       })
     case CLEAR_EVENTS :
       return initialState
+    case MOUSE_ENTER :
+      return state.setIn([`${action.scheduleBlockIndex}`, 'hovered'], true)
+    case MOUSE_LEAVE :
+      return state.setIn([`${action.scheduleBlockIndex}`, 'hovered'], false)
+    case REMOVE_EVENT :
+      return state.delete(`${action.eventStartTime}`)
+    case REMOVE_OCCUPIED :
+      a = state.get('occupied').toJS()
+      newArray = updateOccupiedArray(a, action.start, action.span, false)
+      return state.merge({
+        occupied: List(newArray)
+      })
     default :
       return state
   }
