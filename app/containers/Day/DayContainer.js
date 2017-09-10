@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import * as daysActionCreators from 'redux/modules/days'
 import * as scheduleActionCreators from 'redux/modules/schedule'
 import { bindActionCreators } from 'redux'
-import { dateToNum, timeNumToFormattedDate } from 'helpers/utils'
+import { dateToNum, timeNumToFormattedDate, todayDateTimeNum } from 'helpers/utils'
 
 
 class DayContainer extends React.Component {
@@ -15,8 +15,11 @@ class DayContainer extends React.Component {
 		this.props.updateFormattedDate(timeNumToFormattedDate(timeNum))
 	}
   render () {
+  	const timeNum = dateToNum(this.props.yearNum, this.props.monthNum, this.props.date)
+  	const hasEvent = this.props.occupiedArray.includes(`${timeNum}`)
+  	const isToday = timeNum === todayDateTimeNum
     return (
-      <Day date={this.props.date} handleClick={this.handleClick.bind(this)}/>
+      <Day date={this.props.date} isToday={isToday} hasEvent={hasEvent} handleClick={this.handleClick.bind(this)}/>
     )
   }
 }
@@ -33,6 +36,7 @@ function mapStateToProps ({calendar}) {
 		yearNum: calendar.get('yearNum'),
 		monthNum: calendar.get('monthNum'),
 		dayOfTheFirst: calendar.get('dayOfTheFirst'),
+		occupiedArray: calendar.get('occupiedDates').toJS(),
 	}
 }
 

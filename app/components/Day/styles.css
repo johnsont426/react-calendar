@@ -8,3 +8,11 @@
 .dateCell:hover {
 	border: 2px solid #7CEA9C;
 }
+
+.hasEvent {
+	color: #4BB3FD;
+}
+
+.today {
+	border: 2px solid #7CEA9C;
+}

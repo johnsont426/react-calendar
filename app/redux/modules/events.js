@@ -2,6 +2,7 @@ import { Map, fromJS, List } from 'immutable'
 import { closeModal } from './modal'
 import { saveEvent, saveOccupiedDate, fetchEvents, deleteEvent } from 'helpers/api'
 import { updateOccupiedArray } from 'helpers/utils'
+import { fetchAndHandleOccupiedDate } from './calendar'
 
 const FETCHING_EVENTS = 'FETCHING_EVENTS'
 const ADD_EVENT = 'ADD_EVENT'
@@ -114,6 +115,7 @@ export function addAndHandleEvent (eventText) {
     ]).then(() => {
         dispatch(addEvent(eventText, startTime, timeSpan))
         dispatch(updateOccupied(startTime, timeSpan))
+        dispatch(fetchAndHandleOccupiedDate())
         dispatch(closeModal())
       })
   }
@@ -144,6 +146,7 @@ export function deleteAndHandleEvent (eventStartTime) {
     deleteEvent(uid, dateTimeNum, eventStartTime).then(() => {
       dispatch(removeEvent(eventStartTime))
       dispatch(removeOccupied(eventStartTime, eventTimeSpan))
+      dispatch(fetchAndHandleOccupiedDate())
     })
 
   }

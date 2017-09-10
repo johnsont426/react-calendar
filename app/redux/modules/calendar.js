@@ -4,7 +4,7 @@ import { fetchOccupiedDate } from 'helpers/api'
 
 const NEXT_MONTH = 'NEXT_MONTH'
 const LAST_MONTH = 'LAST_MONTH'
-const ADD_OCCUPIED_DATES = 'ADD_OCCUPIED_DATES'
+const UPDATE_OCCUPIED_DATES = 'UPDATE_OCCUPIED_DATES'
 
 export function nextMonth () {
   return {
@@ -18,9 +18,9 @@ export function lastMonth () {
   }
 }
 
-export function addOccupiedDates(dateTimeNumArray) {
+export function updateOccupiedDates (dateTimeNumArray) {
   return {
-    type: ADD_OCCUPIED_DATES,
+    type: UPDATE_OCCUPIED_DATES,
     dateTimeNumArray,
   }
 }
@@ -33,7 +33,7 @@ export function fetchAndHandleOccupiedDate () {
       for (let dateTimeNum in response) {
         a.push(dateTimeNum)
       }
-      dispatch(addOccupiedDates(a))
+      dispatch(updateOccupiedDates(a))
     })
   }
 }
@@ -66,12 +66,8 @@ export default function months (state = initialState, action) {
         dayOfTheFirst: theFirstOfThisMonth(new Date(theYearNum, lastMonthNum)).getDay(),
         daysInMonth: daysInThisMonth(theYearNum, lastMonthNum)
       })
-    case ADD_OCCUPIED_DATES :
-      const a = state.get('occupiedDates').toJS()
-      action.dateTimeNumArray.map((dateTimeNum) => {
-        a.push(dateTimeNum)
-      })
-      return state.merge({occupiedDates: List(a)})
+    case UPDATE_OCCUPIED_DATES :
+      return state.merge({occupiedDates: List(action.dateTimeNumArray)})
     default :
       return state
   }

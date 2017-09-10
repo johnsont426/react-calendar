@@ -1,6 +1,9 @@
-export const today = new Date
+export const today = new Date()
 export const todayMonthNum = today.getMonth()
 export const todayYearNum = today.getFullYear()
+const todayDateNum = today.getDate()
+const todayDateObj = new Date(todayYearNum, todayMonthNum, todayDateNum)
+export const todayDateTimeNum = todayDateObj.getTime()
 
 export function theFirstOfThisMonth (date) {
   return new Date(date.setDate(1))
