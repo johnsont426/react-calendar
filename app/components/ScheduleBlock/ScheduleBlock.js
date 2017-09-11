@@ -7,7 +7,7 @@ function RemoveEventButton (props) {
 }
 
 export default function ScheduleBlock (props) {
-  const {openModal, updateIndex, scheduleBlockIndex, updateEventStartTime, 
+  const {openModal, scheduleBlockIndex, updateEventStartTime, 
     updateEventTimeSpan, occupied, newEventStart, eventText, mouseEnter, mouseLeave, hovered, deleteAndHandleEvent} = props
   function down () {
     updateEventStartTime(scheduleBlockIndex)
@@ -38,4 +38,19 @@ export default function ScheduleBlock (props) {
         : null }
     </li>
   )
+}
+
+const { func, bool, string, number, array } = PropTypes
+ScheduleBlock.propTypes = {
+  openModal: func.isRequired,
+  scheduleBlockIndex: number.isRequired,
+  updateEventStartTime: func.isRequired,
+  updateEventTimeSpan: func.isRequired,
+  occupied: array.isRequired,
+  newEventStart: number.isRequired,
+  eventText: string.isRequired,
+  mouseEnter: func.isRequired,
+  mouseLeave: func.isRequired,
+  hovered: bool.isRequired,
+  deleteAndHandleEvent: func.isRequired,
 }

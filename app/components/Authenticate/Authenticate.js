@@ -11,3 +11,7 @@ export default function Authenticate ({onAuth}) {
     </div>
   )
 }
+
+Authenticate.propTypes = {
+  onAuth: PropTypes.func.isRequired,
+}

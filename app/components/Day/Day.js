@@ -15,4 +15,7 @@ export default function Day (props) {
 
 Day.propTypes = {
   date: PropTypes.number.isRequired,
+  hasEvent: PropTypes.bool.isRequired,
+  isToday: PropTypes.bool.isRequired,
+  handleClick: PropTypes.func.isRequired,
 }

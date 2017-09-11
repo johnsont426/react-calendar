@@ -38,6 +38,10 @@ class CalendarContainer extends React.Component {
 }
 
 CalendarContainer.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  checkAuth: PropTypes.func.isRequired,
+  lastMonth: PropTypes.func.isRequired,
+  nextMonth: PropTypes.func.isRequired,
   monthNum: PropTypes.number.isRequired,
   dayOfTheFirst: PropTypes.number.isRequired,
   daysInMonth: PropTypes.number.isRequired,

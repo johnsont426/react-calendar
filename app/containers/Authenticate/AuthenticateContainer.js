@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Authenticate } from 'components'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -24,6 +25,13 @@ class AuthenticateContainer extends Component {
       <Authenticate onAuth={this.handleAuth.bind(this)}/>
     )
   }
+}
+
+AuthenticateContainer.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  checkAuth: PropTypes.func.isRequired,
+  fetchAndHandleAuthedUser: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 }
 
 function mapStateToProps ({users}) {

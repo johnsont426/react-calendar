@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Router } from 'react-router'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import { HomeContainer, CalendarContainer, AuthenticateContainer, LogoutContainer } from 'containers'
@@ -43,6 +44,14 @@ class MainContainer extends React.Component {
       </BrowserRouter>
     )
   }
+}
+
+MainContainer.propTypes = {
+  authUser: PropTypes.func.isRequired,
+  fetchingUserSuccess: PropTypes.func.isRequired,
+  fetchAndHandleOccupiedDate: PropTypes.func.isRequired,
+  removeFetchingUser: PropTypes.func.isRequired,
+  isAuthed: PropTypes.bool.isRequired,
 }
 
 function mapStateToProps ({users}) {

@@ -59,4 +59,6 @@ Calendar.propTypes = {
 	month: PropTypes.string.isRequired,
 	dayOfTheFirst: PropTypes.number.isRequired,
 	daysInMonth: PropTypes.number.isRequired,
+	handleClickNextMonth: PropTypes.func.isRequired,
+	handleClickLastMonth: PropTypes.func.isRequired,
 }

@@ -6,7 +6,7 @@ import { link, container, navContainer } from './styles.css'
 function NavLinks ({isAuthed}) {
   return isAuthed === true
     ? <ul>
-        <li><Link to="/" className={link}>{'Home'}</Link></li>
+        <li><Link to="/calendar" className={link}>{'My Calendar'}</Link></li>
       </ul>
     : null
 }

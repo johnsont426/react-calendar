@@ -62,3 +62,16 @@ export default function Modal (props) {
     </ReactModal>
   )
 }
+
+const { func, bool, string } = PropTypes
+
+Modal.propTypes = {
+  addEventError: func.isRequired,
+  addAndHandleEvent: func.isRequired,
+  closeModal: func.isRequired,
+  isOpen: bool.isRequired,
+  error: string.isRequired,
+  updateEventText: func.isRequired,
+  eventText: string.isRequired,
+  isSubmitDisabled: bool.isRequired,
+}

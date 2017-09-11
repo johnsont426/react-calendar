@@ -29,6 +29,7 @@ DayContainer.propTypes = {
   yearNum: PropTypes.number.isRequired,
   monthNum: PropTypes.number.isRequired,
   dayOfTheFirst: PropTypes.number.isRequired,
+  occupiedArray: PropTypes.array.isRequired,
 }
 
 function mapStateToProps ({calendar}) {

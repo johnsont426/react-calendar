@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Home } from 'components'
 import { connect } from 'react-redux'
 
@@ -18,6 +19,11 @@ class HomeContainer extends React.Component {
       <Home />
     )
   }
+}
+
+HomeContainer.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  checkAuth: PropTypes.func.isRequired,
 }
 
 function mapStateToProps ({users}) {

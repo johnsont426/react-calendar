@@ -16,14 +16,16 @@ class ScheduleContainer extends Component {
     return this.props.dateTimeNum
       ? <Schedule
         	formattedDate={this.props.formattedDate}
-        	events={this.props.events}
         	openModal={this.props.openModal} />
       : <p>Please select a date</p>
   }
 }
 
 ScheduleContainer.propTypes = {
+  clearEvents: PropTypes.func.isRequired,
+  fetchAndHandleEvents: PropTypes.func.isRequired,
 	formattedDate: PropTypes.string.isRequired,
+  openModal: PropTypes.func.isRequired,
 }
 
 function mapStateToProps ({schedule, events, days}) {

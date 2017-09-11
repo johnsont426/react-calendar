@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { ModalContainer, ScheduleBlockContainer } from 'containers'
 import { scheduleContainer, scheduleList, timeLable, scheduleDiv, date } from './styles.css'
 
-export default function Schedule ({formattedDate, openModal, events}) {
+export default function Schedule ({formattedDate, openModal}) {
   return (
     <div className={scheduleContainer}>
       <ul className={timeLable}>
@@ -30,4 +30,9 @@ export default function Schedule ({formattedDate, openModal, events}) {
       </div>
     </div>
   )
+}
+
+Schedule.propTypes = {
+  formattedDate: PropTypes.string.isRequired,
+  openModal: PropTypes.func.isRequired,
 }
