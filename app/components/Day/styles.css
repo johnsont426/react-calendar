@@ -1,18 +1,29 @@
 .dateCell {
 	width: 14.285%;
 	text-align: center;
+	font-weight: 500;
 	border: 0;
 	border-collapse: collapse;
+	cursor: pointer;
 }
 
 .dateCell:hover {
-	border: 2px solid #7CEA9C;
+	border: 2px solid #53599A;
 }
 
 .hasEvent {
-	color: #4BB3FD;
+	background-color: #FFA5AB;
+	color: white;
+	font-weight: 500;
+	font-size: 1.2em;
 }
 
 .today {
-	border: 2px solid #7CEA9C;
+	background-color: #6D9DC5;
+	color: white;
+}
+
+.selected {
+	background-color: #53599A;
+	color: white;
 }

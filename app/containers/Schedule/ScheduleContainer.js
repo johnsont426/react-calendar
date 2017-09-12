@@ -8,22 +8,27 @@ import * as modalActionCreators from 'redux/modules/modal'
 import * as eventsActionCreators from 'redux/modules/events'
 
 class ScheduleContainer extends Component {
-  componentWillReceiveProps () {
+  componentDidUpdate () {
     this.props.clearEvents()
-    this.props.fetchAndHandleEvents()
+    if (this.props.formattedDate && this.props.dateTimeNum) {
+      this.props.fetchAndHandleEvents()
+    } else if (!this.props.formattedDate && !this.props.dateTimeNum) {
+      this.props.fetchAndHandleEvents()
+    }
   }
   render () {
-    return this.props.dateTimeNum
-      ? <Schedule
-        	formattedDate={this.props.formattedDate}
-        	openModal={this.props.openModal} />
-      : <p>Please select a date</p>
+    return <Schedule
+              formattedDate={this.props.formattedDate}
+              openModal={this.props.openModal}
+              dateTimeNum={this.props.dateTimeNum} />
+
   }
 }
 
 ScheduleContainer.propTypes = {
   clearEvents: PropTypes.func.isRequired,
   fetchAndHandleEvents: PropTypes.func.isRequired,
+  dateTimeNum: PropTypes.number.isRequired,
 	formattedDate: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,
 }
@@ -32,7 +37,7 @@ function mapStateToProps ({schedule, events, days}) {
   return {
     formattedDate: schedule.get('formattedDate'),
     events: events.get('events'),
-    dateTimeNum: days.get('dateTimeNum'),
+    dateTimeNum: days.get('dateTimeNum') || 0,
   }
 }
 

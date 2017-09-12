@@ -3,7 +3,11 @@ import PropTypes from 'prop-types'
 import { scheduleBlock, occupiedScheduleBlock, eventTextP, removeEventBtn, eventContent } from './styles.css'
 
 function RemoveEventButton (props) {
-  return <div className={removeEventBtn} onClick={props.removeEvent}><p>X</p></div>
+  return <div className={removeEventBtn} onMouseUp={props.removeEvent}><p>X</p></div>
+}
+
+RemoveEventButton.propTypes = {
+  removeEvent: PropTypes.func.isRequired,
 }
 
 export default function ScheduleBlock (props) {
@@ -41,6 +45,7 @@ export default function ScheduleBlock (props) {
 }
 
 const { func, bool, string, number, array } = PropTypes
+
 ScheduleBlock.propTypes = {
   openModal: func.isRequired,
   scheduleBlockIndex: number.isRequired,

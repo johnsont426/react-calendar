@@ -1,11 +1,18 @@
 import { Map } from 'immutable'
 
 const UPDATE_DATE = 'UPDATE_DATE'
+const REMOVE_DATE = 'REMOVE_DATE'
 
 export function updateDate (dateTimeNum) {
   return {
     type: UPDATE_DATE,
     dateTimeNum,
+  }
+}
+
+export function removeDate () {
+  return {
+    type: REMOVE_DATE
   }
 }
 
@@ -19,6 +26,8 @@ export default function days (state = initialState, action) {
       return state.merge({
         dateTimeNum: action.dateTimeNum
       })
+    case REMOVE_DATE :
+      return initialState
     default :
       return state
   }

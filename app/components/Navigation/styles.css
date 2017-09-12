@@ -1,8 +1,9 @@
 .container {
   width: 100%;
-  color: white;
+  color: rgb(94,94,94);
   font-size: 18px;
-  background-color: #55D6BE;
+  font-weight: 500;
+  box-shadow: 0 8px 6px -6px rgb(228,228,228);
 }
 
 .navContainer {
@@ -29,5 +30,5 @@
 }
 
 .link:hover {
-  color: #2E5EAA;
+  color: rgb(0,136,139);
 }

@@ -33,7 +33,7 @@ class MainContainer extends React.Component {
     return (
       <BrowserRouter history={history}>
         <div className={container}>
-          <Navigation isAuthed={this.props.isAuthed}/>
+          <Navigation isAuthed={this.props.isAuthed} />
           <div className={innerContainer}>
             <Route exact path='/' render={(props) => <HomeContainer {...props} checkAuth={this.props.checkAuth} />} />
             <Route path='/auth' render={(props) => <AuthenticateContainer {...props} checkAuth={this.props.checkAuth} />} />

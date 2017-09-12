@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+
 html, body {
   margin: 0;
   padding: 0;
@@ -11,6 +13,7 @@ a:hover, a:active, a:visited {
 }
 
 .centeredContainer {
+  padding-top: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,10 +21,10 @@ a:hover, a:active, a:visited {
 }
 
 .largeHeader {
-  color: #16F4D0;
-  font-weight: 100;
-  font-size: 75px;
-  margin-bottom: 20px;
+  color: rgb(0,136,139);
+  font-weight: 300;
+  font-size: 2.5em;
+  margin-bottom: 40px;
 }
 
 .errorMsg {
@@ -31,11 +34,11 @@ a:hover, a:active, a:visited {
 }
 
 .subHeader {
-  color: #16F4D0;
-  font-size: 35px;
+  color: rgb(0,136,139);
+  font-size: 1.5em;
   text-align: center;
   line-height: 55px;
-  font-weight: 100;
+  font-weight: 300;
 }
 
 .center {
@@ -69,5 +72,5 @@ a:hover, a:active, a:visited {
 }
 
 .darkBtn:hover {
-  background: #4E878C
+  background: rgb(0,136,139);
 }

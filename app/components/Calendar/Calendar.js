@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { DayContainer, ScheduleContainer } from 'containers'
 import { getCorrectDate } from 'helpers/utils'
-import { flexContainer, calendarContainer, monthHeader, calendarTable, tableHeaderCells, weekdays, tableRow, prev, next } from './styles.css'
+import { flexContainer, calendarContainer, monthHeaderBlock, monthHeader, calendarTable, tableHeaderCells, weekdays, tableRow, prev, next } from './styles.css'
 
 export default function Calendar (props) {
 	function getDayContainer (num) {
@@ -11,9 +11,9 @@ export default function Calendar (props) {
   return (
   	<div className={flexContainer}>
 	    <div className={calendarContainer}>
-	    	<div className={monthHeader}>
+	    	<div className={monthHeaderBlock}>
 	    		<p onClick={props.handleClickLastMonth} className={prev}>&#10094;</p>
-	    		<h1>{props.month}</h1>
+	    		<p className={monthHeader}>{props.month}</p>
 	    		<p onClick={props.handleClickNextMonth} className={next}>&#10095;</p>
 	    	</div>
 	      <table className={calendarTable}>

@@ -5,7 +5,7 @@
 }
 
 .timeLable {
-	color: #65B891;
+	color: #A53860;
 	font-size: 0.5em;
 	width: 10%;
 	list-style: none;
@@ -13,7 +13,7 @@
 	margin: 0;
 	position: relative;
 	top: 42px;
-	height: 612px;
+	height: 628px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -33,8 +33,19 @@
 }
 
 .date {
+	text-align: center;
 	height: 50px;
-	font-size: 1.5em;
+	font-size: 1.3em;
 	margin: 0;
-	color: #4E878C;
+	color: #A53860;
+}
+
+.selectADate {
+	font-family: 'Crimson Text', serif;
+	display: block;
+	padding-top: 280px;
+	padding-left: 40px;
+	width: 50%;
+	color: rgb(0,136,139);
+	font-size: 1.7em;
 }

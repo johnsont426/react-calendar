@@ -5,6 +5,9 @@ import { Calendar } from 'components'
 import { formattedMonth } from 'helpers/utils'
 import { bindActionCreators } from 'redux'
 import * as calendarActionCreators from 'redux/modules/calendar'
+import * as eventsActionCreators from 'redux/modules/events'
+import * as schedulesActionCreators from 'redux/modules/schedules'
+import * as daysActionCreators from 'redux/modules/days'
 
 
 class CalendarContainer extends React.Component {
@@ -19,9 +22,11 @@ class CalendarContainer extends React.Component {
     this.redirect.apply(this)
   }
   handleClickLastMonth () {
+    this.props.removeFormattedDate()
     this.props.lastMonth()
   }
   handleClickNextMonth () {
+    this.props.removeFormattedDate()
     this.props.nextMonth()
   }
   render () {
@@ -45,6 +50,8 @@ CalendarContainer.propTypes = {
   monthNum: PropTypes.number.isRequired,
   dayOfTheFirst: PropTypes.number.isRequired,
   daysInMonth: PropTypes.number.isRequired,
+  clearEvents: PropTypes.func.isRequired,
+  removeFormattedDate: PropTypes.func.isRequired,
 }
 
 function mapStateToProps ({calendar, users}) {
@@ -57,7 +64,11 @@ function mapStateToProps ({calendar, users}) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return bindActionCreators(calendarActionCreators, dispatch)
+  return bindActionCreators({
+    ...calendarActionCreators,
+    ...eventsActionCreators,
+    ...schedulesActionCreators,
+    ...daysActionCreators}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarContainer)

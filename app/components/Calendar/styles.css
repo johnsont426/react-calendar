@@ -2,23 +2,33 @@
 	margin: 20px;
 	display: flex;
 	justify-content: space-between;
-	height: 650px;
+	height: 100%;
 }
 
 .calendarContainer {
 	width: 45%;
-	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, .2);
+	box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, .2);
+	border-radius: 0 0 5px 5px;
+	height: 655px;
 }
 
-.monthHeader {
+.monthHeaderBlock {
+	opacity: 0.7;
+	position: relative;
 	padding: 70px 0;
   width: 100%;
-  background: #55D6BE;
+  background-color: rgba(0,136,139,0.7);
   text-align: center;
   color: white;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  border-radius: 5px 5px 0 0;
+}
+
+.monthHeader {
+	font-size: 1.7em;
+	font-weight: 350;
 }
 
 .calendarTable {
@@ -30,6 +40,7 @@
 	height: 60px;
 	width: 100%;
 	text-align: center;
+	font-weight: 300;
 	background-color:#D9DCD6;
 }
 
@@ -42,11 +53,17 @@
 }
 
 .prev {
+	position: absolute;
+	top: 75px;
+	left: 30px;
   font-size: 1.5em;
   cursor: pointer;
 }
 
 .next {
+	position: absolute;
+	top: 75px;
+	right: 30px;
 	font-size: 1.5em;
 	cursor: pointer;
 }

@@ -1,6 +1,6 @@
 export calendar from './calendar'
 export users from './users'
 export days from './days'
-export schedule from './schedule'
+export schedule from './schedules'
 export modal from './modal'
 export events from './events'

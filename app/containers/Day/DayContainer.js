@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Day } from 'components'
 import { connect } from 'react-redux'
 import * as daysActionCreators from 'redux/modules/days'
-import * as scheduleActionCreators from 'redux/modules/schedule'
+import * as schedulesActionCreators from 'redux/modules/schedules'
 import { bindActionCreators } from 'redux'
 import { dateToNum, timeNumToFormattedDate, todayDateTimeNum } from 'helpers/utils'
 
@@ -18,8 +18,9 @@ class DayContainer extends React.Component {
   	const timeNum = dateToNum(this.props.yearNum, this.props.monthNum, this.props.date)
   	const hasEvent = this.props.occupiedArray.includes(`${timeNum}`)
   	const isToday = timeNum === todayDateTimeNum
+  	const isSelected = timeNum === this.props.currentSelectedDateTimeNum
     return (
-      <Day date={this.props.date} isToday={isToday} hasEvent={hasEvent} handleClick={this.handleClick.bind(this)}/>
+      <Day date={this.props.date} isSelected={isSelected} isToday={isToday} hasEvent={hasEvent} handleClick={this.handleClick.bind(this)}/>
     )
   }
 }
@@ -32,19 +33,20 @@ DayContainer.propTypes = {
   occupiedArray: PropTypes.array.isRequired,
 }
 
-function mapStateToProps ({calendar}) {
+function mapStateToProps ({calendar, days}) {
 	return {
 		yearNum: calendar.get('yearNum'),
 		monthNum: calendar.get('monthNum'),
 		dayOfTheFirst: calendar.get('dayOfTheFirst'),
 		occupiedArray: calendar.get('occupiedDates').toJS(),
+		currentSelectedDateTimeNum: days.get('dateTimeNum'),
 	}
 }
 
 function mapDispatchToProps (dispatch) {
 	return bindActionCreators({
 		...daysActionCreators,
-		...scheduleActionCreators,
+		...schedulesActionCreators,
 	}, dispatch)
 }
 
