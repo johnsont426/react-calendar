@@ -8,9 +8,9 @@ html, body {
   font-family: sans-serif;
 }
 
-a:link a:hover, a:active, a:visited {
-	color: inherit;
+a a:link a:hover, a:active, a:visited {
   text-decoration: none;
+  color: rgb(94,94,94);
 }
 
 .centeredContainer {
