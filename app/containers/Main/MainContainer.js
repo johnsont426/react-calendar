@@ -35,8 +35,7 @@ class MainContainer extends React.Component {
         <div className={container}>
           <Navigation isAuthed={this.props.isAuthed} />
           <div className={innerContainer}>
-            <Route exact path='/' render={(props) => <HomeContainer {...props} checkAuth={this.props.checkAuth} />} />
-            <Route path='/auth' render={(props) => <AuthenticateContainer {...props} checkAuth={this.props.checkAuth} />} />
+            <Route exact path='/' render={(props) => <HomeContainer {...props} isAuthed={this.props.isAuthed} />} />
             <Route path='/calendar' render={(props) => <CalendarContainer {...props} checkAuth={this.props.checkAuth} />} />
             <Route path='/logout' component={LogoutContainer} />
           </div>

@@ -6,6 +6,7 @@ import { link, container, navContainer } from './styles.css'
 function NavLinks ({isAuthed}) {
   return isAuthed === true
     ? <ul>
+        <li><Link to="/" className={link}>{'Home'}</Link></li>
         <li><Link to="/calendar" className={link}>{'My Calendar'}</Link></li>
       </ul>
     : null
@@ -17,8 +18,7 @@ function ActionLinks ({isAuthed}) {
         <li><Link to="/logout" className={link}>{'Logout'}</Link></li>
       </ul>
     : <ul>
-        <li><Link to="/" className={link}>{'Home'}</Link></li>
-        <li><Link to='/auth' className={link}>{'Authenticate'}</Link></li>
+        <li><Link to="/" className={link}>{'Quick Calendar'}</Link></li>
       </ul>
 }
 

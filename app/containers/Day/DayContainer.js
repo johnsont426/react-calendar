@@ -7,7 +7,6 @@ import * as schedulesActionCreators from 'redux/modules/schedules'
 import { bindActionCreators } from 'redux'
 import { dateToNum, timeNumToFormattedDate, todayDateTimeNum } from 'helpers/utils'
 
-
 class DayContainer extends React.Component {
 	handleClick () {
 		const timeNum = dateToNum(this.props.yearNum, this.props.monthNum, this.props.date)

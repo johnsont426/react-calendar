@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { default as ReactModal } from 'react-modal'
 import {
   newEventTop, pointer, newEventInputContainer,
-  newEventInput, submitEventBtn, darkBtn } from './styles.css'
+  newEventInput, submitEventBtn, darkBtn, error } from './styles.css'
 
 const modalStyles = {
   content: {
     width: 350,
     margin: '0px auto',
-    height: 220,
+    height: 265,
     borderRadius: 5,
     background: '#D9DCD6',
     padding: 0,
@@ -42,7 +42,7 @@ export default function Modal (props) {
         <span>{'Add new event'}</span>
         <span onClick={closeModalAndRemoveError} className={pointer}>{'X'}</span>
       </div>
-      <p>{props.error}</p>
+      <p className={error}>{props.error}</p>
       <div className={newEventInputContainer}>
         <textarea
           onChange={(e) => props.updateEventText(e.target.value)}

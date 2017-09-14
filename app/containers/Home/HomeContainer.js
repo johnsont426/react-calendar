@@ -2,32 +2,49 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Home } from 'components'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as eventsActionCreators from 'redux/modules/events'
+import * as usersActionCreators from 'redux/modules/users'
 
 class HomeContainer extends React.Component {
-  redirect () {
-    if (this.props.isFetching === false) {
-      this.props.checkAuth.apply(this)
-    } else {
-      setTimeout(this.redirect.bind(this), 1000)
+  handleComingEvents () {
+    if (this.props.isAuthed) {
+      this.props.fetchAndHandleComingEvents()
     }
   }
+  componentDidUpdate () {
+    setTimeout(this.handleComingEvents.bind(this), 1000)
+  }
   componentDidMount () {
-    this.redirect.apply(this)
+    setTimeout(this.handleComingEvents.bind(this), 1000)
+  }
+  handleAuth () {
+    this.props.fetchAndHandleAuthedUser()
   }
   render () {
     return (
-      <Home />
+      <Home onAuth={this.handleAuth.bind(this)} comingEventsArray={this.props.comingEventsArray} isAuthed={this.props.isAuthed}/>
     )
   }
 }
 
 HomeContainer.propTypes = {
   isFetching: PropTypes.bool.isRequired,
-  checkAuth: PropTypes.func.isRequired,
+  isAuthed: PropTypes.bool.isRequired,
+  comingEventsArray: PropTypes.array.isRequired,
 }
 
-function mapStateToProps ({users}) {
-  return { isFetching: users.get('isFetching') }
+function mapStateToProps ({users, events}) {
+  return {
+    isFetching: users.get('isFetching'),
+    comingEventsArray: events.get('comingEventsArray').toJS(),
+  }
 }
 
-export default connect(mapStateToProps)(HomeContainer)
+function mapDispatchToProps (dispatch) {
+  return bindActionCreators({
+    ...eventsActionCreators,
+    ...usersActionCreators}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)

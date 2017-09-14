@@ -1,5 +1,5 @@
 .button {
-  background: #70A9A1;
+  background: rgb(60,83,154);
   color: #fff;
   padding: 15px;
   border-radius: 5px;
@@ -9,5 +9,5 @@
 }
 
 .button:hover {
-  background: rgb(0,136,139);
+  background: rgb(36,146,244);
 }

@@ -1,10 +1,10 @@
 .newEventTop {
-  background: #fff;
+  background: rgb(60,83,154);
   padding: 11px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #55D6BE;
+  color: #fff;
 }
 
 .pointer {
@@ -36,4 +36,12 @@
 .submitEventBtn:disabled {
   background: #C6C6C6;
   border: 1px solid #C6C6C6;
+}
+
+.error {
+  font-size: 0.8em;
+  color: red;
+  text-align: center;
+  height: 20px;
+  margin-top: 5px;
 }

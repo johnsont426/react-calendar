@@ -1,11 +1,67 @@
-.container {
-  composes: centeredContainer from 'sharedStyles/styles.css';
-}
+@import url('https://fonts.googleapis.com/css?family=Bad+Script');
 
 .title {
-  composes: largeHeader from 'sharedStyles/styles.css';
+	font-size: 2.2em;
+	font-weight: 600;
+	color: rgb(38,38,38);
+	font-family: 'Bad Script', cursive;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+.header {
+  font-size: 2em;
+  font-weight: 300;
+  margin-bottom: 50px;
+}
+
+.subHeader {
+  font-size: 1.3em;
+  text-align: left;
+  color: #4a90e2;
+  font-weight: 300;
+}
+
+.comingEventBlock {
+	width: 70%;
+	margin-bottom: 40px;
+	margin-left: 20px;
+}
+
+.flexContainer {
+	display: flex;
+	margin-left: 20px;
+}
+
+.startTimeLabel {
+	color: #A53860;
+	margin-right: 30px
+}
+
+.comingEventText {
+	color: rgb(0,136,139);
+	font-weight: 450;
+}
+
+.authContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.calendarImg {
+	max-width: 300px;
+	max-height: 300px;
 }
 
 .slogan {
-  composes: subHeader from 'sharedStyles/styles.css';
+	font-size: 1.5em;
+	font-weight: 500;
+	margin-bottom: 40px;
+	font-family: serif;
 }

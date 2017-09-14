@@ -19,14 +19,8 @@ function checkAuth () {
 
   const isAuthed = checkIfAuthed(store)
   const pathName = this.props.match.path
-  if (pathName === '/' || pathName === '/auth') {
-    if (isAuthed === true) {
-      this.props.history.push({pathname: '/calendar'})
-    }
-  }else {
-    if (isAuthed !== true) {
-      this.props.history.push({pathname: '/auth'})
-    }
+  if (pathName === '/calendar' && isAuthed === false) {
+    this.props.history.push({pathname: '/'})
   }
 }
 

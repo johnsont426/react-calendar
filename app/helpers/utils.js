@@ -55,3 +55,16 @@ export function updateOccupiedArray(occupiedArray, eventStartTime, eventTimeSpan
 
   return occupiedArray
 }
+
+export function getComingDatesTimeNum () {
+  let a = []
+  for (let i = todayDateNum; i < todayDateNum + 5; i++) {
+    a.push(dateToNum(todayYearNum, todayMonthNum, i))
+  }
+  return a
+}
+
+export function indexToTime (index) {
+  const a = ["12 AM", "2 AM", "4 AM", "6 AM", "8 AM", "10 AM", "12 PM", "2 PM", "4 PM", "6 PM", "8 PM", "10 PM"]
+  return a[index]
+}

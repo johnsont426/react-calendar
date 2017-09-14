@@ -1,6 +1,6 @@
 import { Map, fromJS, List } from 'immutable'
 import { closeModal } from './modal'
-import { saveEvent, saveOccupiedDate, fetchEvents, deleteEvent } from 'helpers/api'
+import { saveEvent, saveOccupiedDate, fetchEvents, deleteEvent, fetchComingEvents } from 'helpers/api'
 import { updateOccupiedArray } from 'helpers/utils'
 import { fetchAndHandleOccupiedDate } from './calendar'
 
@@ -16,6 +16,7 @@ const MOUSE_ENTER = 'MOUSE_ENTER'
 const MOUSE_LEAVE = 'MOUSE_LEAVE'
 const REMOVE_EVENT = 'REMOVE_EVENT'
 const REMOVE_OCCUPIED = 'REMOVE_OCCUPIED'
+const ADD_COMING_EVENTS_OBJECT = 'ADD_COMING_EVENTS_OBJECT'
 
 export function fetchingEvents () {
   return {
@@ -102,6 +103,13 @@ export function removeOccupied (start, span) {
   }
 }
 
+function addComingEventsArray (eventsArray) {
+  return {
+    type: ADD_COMING_EVENTS_OBJECT,
+    eventsArray,
+  }
+}
+
 export function addAndHandleEvent (eventText) {
   return function (dispatch, getState) {
     const uid = getState().users.get('authedId')
@@ -137,6 +145,15 @@ export function fetchAndHandleEvents () {
   }
 }
 
+export function fetchAndHandleComingEvents () {
+  return function (dispatch, getState) {
+    const uid = getState().users.get('authedId')
+    fetchComingEvents(uid).then((eventsArray) => {
+      dispatch(addComingEventsArray(eventsArray))
+    })
+  }
+}
+
 export function deleteAndHandleEvent (eventStartTime) {
   return function (dispatch, getState) {
     const uid = getState().users.get('authedId')
@@ -156,6 +173,7 @@ const initialState = fromJS({
   isFetching: false,
   occupied: [false, false, false, false, false, false, false, false, false, false, false, false],
   error: '',
+  comingEventsArray: []
 })
 
 export default function events (state = initialState, action) {
@@ -201,6 +219,10 @@ export default function events (state = initialState, action) {
       newArray = updateOccupiedArray(a, action.start, action.span, false)
       return state.merge({
         occupied: List(newArray)
+      })
+    case ADD_COMING_EVENTS_OBJECT :
+      return state.merge({
+        comingEventsArray: fromJS(action.eventsArray)
       })
     default :
       return state
