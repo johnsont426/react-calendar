@@ -41,7 +41,7 @@ export default function Home ({comingEventsArray, isAuthed, onAuth}) {
 	if (isAuthed) {
 	  return (
 	    <div className={container}>
-	    	<h1 className={header}>Greeting! You have the following events coming up:</h1>
+	    	<h1 className={header}>{comingEventsArray.length === 0 ? "Greeting! You have't planned anything for the next five days yet, add an event now?" : 'Greeting! You have the following events coming up:'}</h1>
 	      {comingEventsArray.map((comingEventObject) => {
 	      	const startTimeArray = []
 					const eventTextArray = []
