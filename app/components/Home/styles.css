@@ -65,3 +65,15 @@
 	margin-bottom: 40px;
 	font-family: serif;
 }
+
+.button {
+	composes: bigBtn from 'sharedStyles/styles.css';
+	text-decoration: none;
+}
+
+.buttonDiv {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 70px;
+}

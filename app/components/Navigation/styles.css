@@ -27,6 +27,7 @@
 
 .link {
   text-decoration: none;
+  color: rgb(94,94,94);
 }
 
 .link:hover {

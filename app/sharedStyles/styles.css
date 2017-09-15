@@ -10,7 +10,6 @@ html, body {
 
 a a:link a:hover, a:active, a:visited {
   text-decoration: none;
-  color: rgb(94,94,94);
 }
 
 .centeredContainer {
@@ -70,5 +69,19 @@ a a:link a:hover, a:active, a:visited {
 }
 
 .darkBtn:hover {
+  background: rgb(36,146,244);
+}
+
+.bigBtn {
+  background: rgb(60,83,154);
+  color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  border-width: 0;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.bigBtn:hover {
   background: rgb(36,146,244);
 }

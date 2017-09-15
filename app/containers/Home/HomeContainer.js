@@ -23,7 +23,7 @@ class HomeContainer extends React.Component {
   }
   render () {
     return (
-      <Home onAuth={this.handleAuth.bind(this)} comingEventsArray={this.props.comingEventsArray} isAuthed={this.props.isAuthed}/>
+      <Home userName={this.props.userName} onAuth={this.handleAuth.bind(this)} comingEventsArray={this.props.comingEventsArray} isAuthed={this.props.isAuthed}/>
     )
   }
 }
@@ -32,12 +32,15 @@ HomeContainer.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   isAuthed: PropTypes.bool.isRequired,
   comingEventsArray: PropTypes.array.isRequired,
+  userName: PropTypes.string.isRequired,
 }
 
 function mapStateToProps ({users, events}) {
+  const id = users.get('authedId')
   return {
     isFetching: users.get('isFetching'),
     comingEventsArray: events.get('comingEventsArray').toJS(),
+    userName: users.getIn([`${id}`, 'info', 'name']) || '',
   }
 }
 

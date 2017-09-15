@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { link, container, navContainer } from './styles.css'
 
 function NavLinks ({isAuthed}) {
   return isAuthed === true
     ? <ul>
-        <li><Link to="/" className={link}>{'Home'}</Link></li>
-        <li><Link to="/calendar" className={link}>{'My Calendar'}</Link></li>
+        <li><NavLink to="/" className={link}>{'Home'}</NavLink></li>
+        <li><NavLink to="/calendar" className={link}>{'My Calendar'}</NavLink></li>
       </ul>
     : null
 }
@@ -15,10 +15,10 @@ function NavLinks ({isAuthed}) {
 function ActionLinks ({isAuthed}) {
 	return isAuthed === true
 		? <ul>
-        <li><Link to="/logout" className={link}>{'Logout'}</Link></li>
+        <li><NavLink to="/logout" className={link}>{'Logout'}</NavLink></li>
       </ul>
     : <ul>
-        <li><Link to="/" className={link}>{'Quick Calendar'}</Link></li>
+        <li><NavLink to="/" className={link}>{'Quick Calendar'}</NavLink></li>
       </ul>
 }
 
